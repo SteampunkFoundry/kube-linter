@@ -1,0 +1,4 @@
+# whitelist the files to include
+*
+!README.md
+!Dockerfile
