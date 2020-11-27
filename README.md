@@ -8,13 +8,13 @@ that can be used in a Jenkins pipeline.
 From a command line:
 
 ```bash
-docker run -v ${PWD}:/src ggotimer/kube-linter /kube-linter lint /src
+docker run -v ${PWD}:/src steampunkfoundry/kube-linter /kube-linter lint /src
 ```
 
 In `Jenkinsfile`:
 
 ```Jenkinsfile
-containerTemplate(name: 'kubelinter', image: 'ggotimer/kube-linter', ttyEnabled: true, command: 'cat')
+containerTemplate(name: 'kubelinter', image: 'steampunkfoundry/kube-linter', ttyEnabled: true, command: 'cat')
 ...
 stage('Container') {
     container('kubelinter') {
@@ -30,7 +30,7 @@ stage('Container') {
 ## Building
 
 ```bash
-docker build -t ggotimer/kube-linter .
+docker build -t steampunkfoundry/kube-linter .
 ```
 
 ## Rationale
