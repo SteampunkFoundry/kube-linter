@@ -15,7 +15,7 @@ podTemplate(
                       command: 'cat',
                       envVars: [containerEnvVar(key: 'DOCKER_HOST', value: "unix:///var/run/docker.sock")],
                       privileged: true),
-    containerTemplate(name: 'checkov', image: 'bridgecrew/checkov:latest', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'checkov', image: 'bridgecrew/checkov:2.0.67', ttyEnabled: true, command: 'cat')
   ],
   volumes: [hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')],
   nodeSelector: 'role=infra'
