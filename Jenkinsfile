@@ -15,7 +15,7 @@ podTemplate(
                       command: 'cat',
                       envVars: [containerEnvVar(key: 'DOCKER_HOST', value: "unix:///var/run/docker.sock")],
                       privileged: true),
-    containerTemplate(name: 'checkov', image: 'bridgecrew/checkov', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'checkov', image: 'bridgecrew/checkov:latest', ttyEnabled: true, command: 'cat')
   ],
   volumes: [hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')],
   nodeSelector: 'role=infra'
@@ -33,8 +33,8 @@ podTemplate(
         container('checkov') {
           stage('Checkov Analysis') {
             ansiColor('xterm') {
-              sh('checkov --directory . -o cli || true')
-              sh('checkov --directory . -o junitxml > result.xml')
+              sh('checkov --file Dockerfile -o cli || true')
+              sh('checkov --file Dockerfile -o junitxml > result.xml')
               junit 'result.xml'
             }
           }
