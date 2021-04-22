@@ -5,7 +5,7 @@ FROM busybox:1.32.1-uclibc
 COPY --from=original /kube-linter /
 
 HEALTHCHECK NONE
-RUN useradd -ms /bin/bash kubelinter
+RUN adduser -s /bin/bash kubelinter
 USER kubelinter
 
 CMD ["/kube-linter"]
